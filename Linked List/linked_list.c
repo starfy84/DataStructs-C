@@ -57,6 +57,15 @@ node make_node(int value){
 	n->error_code = 0;
 	return n;
 }
+void display(linkedlist l){
+	node curr = l->start;
+	while(curr != NULL){
+		printf("%d -> ",curr->value);
+		curr = curr->right;
+	}
+	printf("END\n");
+}
+
 linkedlist make_linkedlist(){
 	linkedlist l = (linkedlist)malloc(sizeof(struct LINKEDLIST)); //Allocate memory
 	return l;
