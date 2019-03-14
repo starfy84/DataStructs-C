@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linked_list.h"
+node node_error(int code){
+	node n = make_node(0);
+	n->error_code = code;
+	return n;
+}
 void insert(linkedlist l, node n, int index){
 	int i = 0; //Current index
 	node prev = l->start; //Previous node (should tail curr)
