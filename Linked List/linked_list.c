@@ -79,6 +79,18 @@ node peek_front(linkedlist l){
 node peek_back(linkedlist l){
 	return l->end; //End of linked list
 }
+node get(linkedlist l, int index){
+	int i = 0; //Current index
+	node curr = l->start; //Current node
+	
+	while(curr != NULL && i < index){
+		curr = curr->right; //Traverses through linked list
+	}
+	if(curr == NULL) //Index out of bounds
+		return node_error(1);
+	return curr;
+
+}
 node make_node(int value){
 	node n = (node)malloc(sizeof(struct NODE)); //Allocate memory
 	n->value = value;
