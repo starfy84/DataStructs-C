@@ -1,4 +1,3 @@
-#include "linked_list.h"node peek_front(linkedlist l){
 #include <stdio.h>
 #include <stdlib.h>
 #include "linked_list.h"
@@ -114,3 +113,4 @@ void display(linkedlist l){
 linkedlist make_linkedlist(){
 	linkedlist l = (linkedlist)malloc(sizeof(struct LINKEDLIST)); //Allocate memory
 	return l;
+}
