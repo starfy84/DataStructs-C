@@ -2,6 +2,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linked_list.h"
+void insert(linkedlist l, node n, int index){
+	int i = 0; //Current index
+	node prev = l->start; //Previous node (should tail curr)
+	node curr = l->start; //Current node
+	
+	while(curr != NULL && i < index){
+		prev = curr; 
+		curr = curr->right; //Traverses through linked list
+	}
+
+	/*
+	WIP CODE (I haven't fully tested if it works yet)
+	*/
+	if(curr != NULL){
+		n->right = curr;
+		curr->left = n;
+		if(prev == NULL)
+			l->start = n;
+	}
+	if(prev != NULL){
+		n->left = prev;
+		prev->right = n;
+		if(curr == NULL)
+			l->end = n;
+	}
+	if(curr == NULL && prev == NULL)
+		l->start = l->end = n;
+}
 void push_front(linkedlist l, node n){
 	if(l->start != NULL){
 		//Linking nodes
