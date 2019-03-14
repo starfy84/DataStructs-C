@@ -24,6 +24,27 @@ void push_back(linkedlist l, node n){
 		l->start = l->end = n;
 	}
 }
+node pop_front(linkedlist l){
+	node n = l->start; //Store value being popped
+	if(l->start != NULL){
+		l->start = l->start->right; //Change start node
+		if(l->start != NULL)
+			l->start->left = NULL; //Remove connection to popped node
+	}
+	n->right = NULL; //Remove connection to popped node
+	return n;
+}
+node pop_back(linkedlist l){
+	node n = l->end; //Store value being popped
+	if(l->end != NULL){
+		l->end = l->end->left; //Change end node
+		if(l->end != NULL){
+			l->end->right = NULL; //Remove connection to popped node
+		}
+	}
+	n->left = NULL; //Remove connection to popped node
+	return n;
+}
 node peek_front(linkedlist l){
 	return l->start; //Start of linked list
 }
