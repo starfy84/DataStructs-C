@@ -2,6 +2,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linked_list.h"
+void push_front(linkedlist l, node n){
+	if(l->start != NULL){
+		//Linking nodes
+		l->start->left = n;
+		n->right = l->start;
+		l->start = n;
+	}
+	else{ //If linked list is empty
+		l->start = l->end = n;
+	}
+}
+void push_back(linkedlist l, node n){
+	if(l->end != NULL){
+		//Linking nodes
+		l->end->right = n;
+		n->left = l->end;
+		l->end = n;
+	}
+	else{ //If linked list is empty
+		l->start = l->end = n;
+	}
+}
 node peek_front(linkedlist l){
 	return l->start; //Start of linked list
 }
