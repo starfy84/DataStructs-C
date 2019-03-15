@@ -14,6 +14,7 @@ void insert(linkedlist l, node n, int index){
 	while(curr != NULL && i < index){
 		prev = curr; 
 		curr = curr->right; //Traverses through linked list
+		i++;
 	}
 
 	/*
