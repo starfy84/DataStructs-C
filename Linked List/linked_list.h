@@ -5,14 +5,16 @@ struct NODE{ //Node data type
 	int value;
 	struct NODE *left;
 	struct NODE *right;
-	bool error_code; //0 means no error, 1 means error
+	int error_code; //0 means no error, 1 means error
 };
 struct LINKEDLIST{ //Linked list template
 	node start;
 	node end;
+	int size;
 };
 typedef struct LINKEDLIST *linkedlist;
 void insert(linkedlist l, node n, int index); //Inserts a node at an index
+node delete(linkedlist l, int index); //Removes a node at an index
 void push_front(linkedlist l, node n); //Pushes a node in the beginning of a linked list
 void push_back(linkedlist l, node n); //Pushes a node at the back of a linked list
 node pop_front(linkedlist l); //Removes a node in the beginning of a linked list and returns it

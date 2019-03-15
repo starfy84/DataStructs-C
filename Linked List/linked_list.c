@@ -33,6 +33,39 @@ void insert(linkedlist l, node n, int index){
 	}
 	if(curr == NULL && prev == NULL)
 		l->start = l->end = n;
+	l->size++;
+}
+
+node delete(linkedlist l, int index){
+	if(index < l->size && index >=0){
+		l->size--;
+		node prev = l->start;
+		node curr = prev;
+		if(index == 0){ //If deleting the head
+			l->start = l->start->right;
+			curr->right = NULL;
+			return curr;
+		}
+		else if(index == l->size - 1){ //If deleting the tail
+			curr = l->end;
+			l->end = curr->left;
+			curr->left = NULL;
+			return curr;
+		}
+		for(int x = 0;x < index;x++){ //Loops to the node to be deleted
+			prev = curr;
+			curr = curr->right;
+		}
+		if(curr->right != NULL){
+			curr->right->left = prev;
+		}
+		prev->right = curr->right; //Delete
+		curr->right = NULL;
+		curr->left = NULL;
+		return curr;
+	}
+	else
+		return node_error(1);
 }
 void push_front(linkedlist l, node n){
 	if(l->start != NULL){
@@ -44,6 +77,7 @@ void push_front(linkedlist l, node n){
 	else{ //If linked list is empty
 		l->start = l->end = n;
 	}
+	l->size++;
 }
 void push_back(linkedlist l, node n){
 	if(l->end != NULL){
@@ -55,6 +89,7 @@ void push_back(linkedlist l, node n){
 	else{ //If linked list is empty
 		l->start = l->end = n;
 	}
+	l->size++;
 }
 node pop_front(linkedlist l){
 	node n = l->start; //Store value being popped
@@ -62,8 +97,12 @@ node pop_front(linkedlist l){
 		l->start = l->start->right; //Change start node
 		if(l->start != NULL)
 			l->start->left = NULL; //Remove connection to popped node
+		n->right = NULL; //Remove connection to popped node
+		l->size--;
 	}
-	n->right = NULL; //Remove connection to popped node
+	else{
+		return node_error(1);
+	}
 	return n;
 }
 node pop_back(linkedlist l){
@@ -73,8 +112,12 @@ node pop_back(linkedlist l){
 		if(l->end != NULL){
 			l->end->right = NULL; //Remove connection to popped node
 		}
+		n->left = NULL; //Remove connection to popped node
+		l->size--;
 	}
-	n->left = NULL; //Remove connection to popped node
+	else{
+		return node_error(1);
+	}
 	return n;
 }
 node peek_front(linkedlist l){
@@ -112,5 +155,6 @@ void display(linkedlist l){
 
 linkedlist make_linkedlist(){
 	linkedlist l = (linkedlist)malloc(sizeof(struct LINKEDLIST)); //Allocate memory
+	l->size = 0;
 	return l;
 }
